@@ -1,3 +1,3 @@
-# mcpm-builds
+# Mod builds
 
-Just a bundle of builds of mods for personal use 
+Just bundling some mods for personal use 

@@ -1,9 +1,10 @@
 name: mcpm-sodium
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
+  release:
+    types: [created]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,3 +44,4 @@ jobs:
         with:
           artifacts: build/mods/*.jar
           
+

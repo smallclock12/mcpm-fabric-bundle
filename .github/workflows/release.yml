@@ -25,13 +25,9 @@ jobs:
           allowUpdates: true
           tag: ${{ inputs.tag }}
           name: ${{ inputs.tag }}
-        
-  workflow_triggers:
-    runs-on: ubuntu-latest
-    environment:
-      name: prod
-    steps:
-      - name: sodium
-        uses: ./.github/workflows/build-sodium.yml
-        with:
-          tag: ${{ inputs.tag }}  
+          
+  sodium:
+    uses: ./.github/workflows/build-sodium.yml
+    with:
+      tag: ${{ inputs.tag }}
+

@@ -3,7 +3,7 @@ name: mcpm-sodium
 on:
   workflow_dispatch:
   release:
-    types: [created]
+    types: [published]
 
 permissions:
   contents: write
@@ -47,6 +47,7 @@ jobs:
           artifacts: sodium/build/mods/*.jar
           allowUpdates: true
           
+
 
 
 

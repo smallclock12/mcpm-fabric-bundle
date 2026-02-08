@@ -5,6 +5,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
           cache-read-only: true
 
       - name: Execute Gradle build
-        run: ./gradlew build -Pbuild.release=true
+        run: ./gradlew :fabric:build -Pbuild.release=true
         working-directory: ./sodium
 
       - name: Upload artifacts
@@ -43,5 +46,6 @@ jobs:
         with:
           artifacts: sodium/build/mods/*.jar
           
+
 
 

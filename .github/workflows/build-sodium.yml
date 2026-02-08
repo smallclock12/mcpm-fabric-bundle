@@ -4,12 +4,9 @@ on:
   workflow_call:
     inputs:
       tag:
-        type: string
-        required: true
         description: 'Tag name for release'
-        
-  release:
-    types: [published]
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -55,6 +52,7 @@ jobs:
           tag: ${{ inputs.tag }}
           name: ${{ inputs.tag }}
           
+
 
 
 

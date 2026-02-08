@@ -1,0 +1,23 @@
+name: mcpm-sodium
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+
+    steps:        
+      - name: Create release  
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          allowUpdates: true
+          

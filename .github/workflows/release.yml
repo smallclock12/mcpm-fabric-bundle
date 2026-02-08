@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: prod
-
-    steps:        
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        
       - name: Create release  
         uses: ncipollo/release-action@v1.20.0
         with:

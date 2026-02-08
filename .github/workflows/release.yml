@@ -1,9 +1,11 @@
 name: release
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - '*'
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -19,4 +21,6 @@ jobs:
         uses: ncipollo/release-action@v1.20.0
         with:
           allowUpdates: true
+          tag: ${{ inputs.tag }}
+          name: ${{ inputs.tag }}
           

@@ -1,3 +1,6 @@
 [submodule "sodium"]
 	path = sodium
 	url = git@github.com:CaffeineMC/sodium.git
+[submodule "freecam"]
+	path = freecam
+	url = git@github.com:MinecraftFreecam/Freecam.git

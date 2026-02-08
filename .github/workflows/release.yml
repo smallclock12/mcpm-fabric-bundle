@@ -24,3 +24,8 @@ jobs:
           tag: ${{ inputs.tag }}
           name: ${{ inputs.tag }}
           
+      - name: sodium
+        uses: ./.github/workflows/build-sodium.yml
+        with:
+          tag: ${{ inputs.tag }}
+          

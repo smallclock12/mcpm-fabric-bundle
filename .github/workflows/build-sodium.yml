@@ -45,7 +45,9 @@ jobs:
         uses: ncipollo/release-action@v1.20.0
         with:
           artifacts: sodium/build/mods/*.jar
+          allowUpdates: true
           
+
 
 
 

@@ -1,0 +1,54 @@
+name: mcpm-freecam
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          recursive: 'true'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: microsoft
+          
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build & publish
+        run: ./gradlew :fabric:build
+        working-directory: ./freecam
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: freecam-artifacts-${{ steps.ref.outputs.branch }}
+          path: freecam/build/mods/*.jar
+          
+      - name: Create release  
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          artifacts: freecam/build/mods/*.jar
+          allowUpdates: true
+          tag: ${{ inputs.tag }}
+          name: ${{ inputs.tag }}

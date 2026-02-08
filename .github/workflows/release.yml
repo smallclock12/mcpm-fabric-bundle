@@ -31,3 +31,7 @@ jobs:
     with:
       tag: ${{ inputs.tag }}
 
+  freecam:
+    uses: ./.github/workflows/build-freecam.yml
+    with:
+      tag: ${{ inputs.tag }}

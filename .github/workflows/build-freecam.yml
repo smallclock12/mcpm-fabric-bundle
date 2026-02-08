@@ -43,12 +43,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: freecam-artifacts-${{ steps.ref.outputs.branch }}
-          path: freecam/build/libs/*-fabric-*.jar
+          path: freecam/build/libs/*-fabric-[0-9]*.jar
           
       - name: Create release  
         uses: ncipollo/release-action@v1.20.0
         with:
-          artifacts: freecam/build/libs/*-fabric-*.jar
+          artifacts: freecam/build/libs/*-fabric-[0-9]*.jar
           allowUpdates: true
           tag: ${{ inputs.tag }}
           name: ${{ inputs.tag }}

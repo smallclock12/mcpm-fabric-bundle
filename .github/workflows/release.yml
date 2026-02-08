@@ -1,5 +1,4 @@
-name: mcpm-sodium
-
+name: release
 on:
   workflow_dispatch:
   push:

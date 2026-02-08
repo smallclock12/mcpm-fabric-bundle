@@ -1,9 +1,18 @@
 name: mcpm-sodium
 
 on:
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
   workflow_dispatch:
-  release:
-    types: [created]
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -46,7 +55,13 @@ jobs:
         with:
           artifacts: sodium/build/mods/*.jar
           allowUpdates: true
+          tag: ${{ inputs.tag }}
+          name: ${{ inputs.tag }}
           
+
+
+
+
 
 
 

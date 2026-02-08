@@ -1,10 +1,11 @@
-name: mcpm-sodium
-
+name: release
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - '*'
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -14,10 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: prod
-
-    steps:        
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        
       - name: Create release  
         uses: ncipollo/release-action@v1.20.0
         with:
           allowUpdates: true
+          tag: ${{ inputs.tag }}
+          name: ${{ inputs.tag }}
           
+  sodium:
+    uses: ./.github/workflows/build-sodium.yml
+    with:
+      tag: ${{ inputs.tag }}
+

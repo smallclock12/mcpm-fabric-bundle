@@ -35,3 +35,8 @@ jobs:
     uses: ./.github/workflows/build-freecam.yml
     with:
       tag: ${{ inputs.tag }}
+
+  fullbright:
+    uses: ./.github/workflows/build-fullbright.yml
+    with:
+      tag: ${{ inputs.tag }}

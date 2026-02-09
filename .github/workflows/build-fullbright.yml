@@ -1,0 +1,66 @@
+name: mcpm-fullbright
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name for release'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+        
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: true
+
+      - name: Execute Gradle build
+        run: ./gradlew build -Pbuild.release=true
+        working-directory: ./fullbright
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullbright-artifacts-${{ steps.ref.outputs.branch }}
+          path: fullbright/build/libs/*.jar
+          
+      - name: Create release  
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          artifacts: fullbright/build/libs/*[0-9].jar
+          allowUpdates: true
+          tag: ${{ inputs.tag }}
+          name: ${{ inputs.tag }}
+          
+
+
+
+
+
+
+
+

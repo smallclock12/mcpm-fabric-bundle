@@ -4,3 +4,6 @@
 [submodule "freecam"]
 	path = freecam
 	url = git@github.com:MinecraftFreecam/Freecam.git
+[submodule "fullbright"]
+	path = fullbright
+	url = git@github.com:Sjouwer/gamma-utils.git
